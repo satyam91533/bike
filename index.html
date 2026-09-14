@@ -1,842 +1,604 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#111827">
-<title>EMI Calculator - Shashi Automobiles, Bettiah</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:#f5f7fb;
-  color:#111827;
-}
-header{
-  background:#111827;
-  color:white;
-  padding:20px 15px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-}
-header h1{font-size:23px;margin-bottom:5px}
-header p{font-size:13px;color:#d1d5db}
-.header-actions{display:flex;gap:7px}
-button{
-  border:0;
-  border-radius:12px;
-  padding:12px 14px;
-  font-weight:bold;
-  cursor:pointer;
-}
-.menu-btn{background:white;color:#111827}
-.emi-top-btn{background:#2563eb;color:white}
-.container{
-  max-width:650px;
-  margin:auto;
-  padding:20px 14px 35px;
-}
-.card{
-  background:white;
-  border:1px solid #e5e7eb;
-  border-radius:22px;
-  padding:22px;
-  margin-bottom:20px;
-  box-shadow:0 5px 20px #00000008;
-}
-h2{font-size:22px;margin-bottom:7px}
-.subtitle{color:#6b7280;font-size:14px;margin-bottom:22px}
-label{
-  display:block;
-  color:#475569;
-  font-size:13px;
-  font-weight:bold;
-  margin-bottom:8px;
-}
-input,select{
-  width:100%;
-  padding:15px;
-  border:1px solid #cbd5e1;
-  border-radius:12px;
-  font-size:18px;
-  outline:none;
-  background:white;
-}
-input:focus,select:focus{
-  border-color:#2563eb;
-  box-shadow:0 0 0 3px #2563eb18;
-}
-.group{margin-bottom:20px}
-#bikeFound{
-  display:none;
-  background:#ecfdf5;
-  border:1px solid #bbf7d0;
-  color:#15803d;
-  padding:15px;
-  border-radius:14px;
-  font-weight:bold;
-  margin-bottom:18px;
-}
-#variantBox,#priceSection{display:none}
-.variant-label{color:#64748b;font-size:14px;margin-bottom:6px}
-.variant-name{
-  font-size:22px;
-  font-weight:bold;
-  line-height:1.3;
-}
-.main-price-box{
-  margin:22px 0 14px;
-  padding:25px 12px;
-  text-align:center;
-  background:#eaf4ff;
-  border:1px solid #bfdbfe;
-  border-radius:20px;
-}
-.main-price-label{
-  color:#315887;
-  font-size:17px;
-  font-weight:bold;
-  margin-bottom:10px;
-}
-.main-price{
-  color:#123d91;
-  font-size:40px;
-  font-weight:800;
-  word-break:break-word;
-}
-.dashes{
-  color:#475569;
-  font-size:25px;
-  font-weight:bold;
-  margin-top:8px;
-}
-.price-row{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  padding:16px 0;
-  border-bottom:1px solid #e5e7eb;
-}
-.price-row span:first-child{
-  color:#475569;
-  font-size:16px;
-}
-.price-row span:last-child{
-  font-size:19px;
-  font-weight:bold;
-  text-align:right;
-}
-.primary{
-  width:100%;
-  margin-top:20px;
-  background:#1677ed;
-  color:white;
-  font-size:19px;
-  padding:17px;
-}
-.secondary{
-  width:100%;
-  margin-top:12px;
-  background:#e5e7eb;
-  color:#111827;
-  font-size:16px;
-}
-#emiSection{display:none}
-.calculation{
-  background:#f1f5f9;
-  border-radius:13px;
-  padding:15px;
-}
-.calc-row{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  padding:7px 0;
-  font-size:14px;
-}
-.calc-row span:last-child{font-weight:bold}
-.result{
-  background:#111827;
-  color:white;
-  border-radius:18px;
-  text-align:center;
-  padding:25px 15px;
-  margin-top:20px;
-}
-.result p{color:#cbd5e1;margin-bottom:8px}
-.result h3{font-size:38px}
-footer{
-  text-align:center;
-  color:#64748b;
-  padding:15px;
-  font-size:14px;
-}
-.overlay{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:#0008;
-  z-index:5;
-}
-.overlay.show{display:block}
-.drawer{
-  position:fixed;
-  top:0;
-  right:-330px;
-  width:310px;
-  max-width:90%;
-  height:100%;
-  background:white;
-  z-index:6;
-  padding:22px;
-  transition:.25s;
-  overflow-y:auto;
-}
-.drawer.open{right:0}
-.drawer-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:25px;
-}
-.close-btn{background:#e5e7eb;font-size:20px}
-@media(max-width:500px){
-  header h1{font-size:19px}
-  header p{font-size:11px}
-  .header-actions button{font-size:11px;padding:10px 8px}
-  .card{padding:18px}
-  .main-price{font-size:34px}
-  .variant-name{font-size:20px}
-  .price-row span:first-child{font-size:14px}
-  .price-row span:last-child{font-size:17px}
-}
-</style>
+    <meta name="theme-color" content="#111111">
+    <meta name="description" content="Bike EMI Calculator">
+
+    <link rel="manifest" href="manifest.json">
+
+    <title>Bike EMI Calculator</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f1f3f6;
+            color: #111;
+            min-height: 100vh;
+        }
+
+        .app {
+            width: 100%;
+            max-width: 480px;
+            margin: auto;
+            min-height: 100vh;
+            padding: 18px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px 0 22px;
+        }
+
+        .logo {
+            width: 64px;
+            height: 64px;
+            margin: auto;
+            border-radius: 18px;
+            background: #111;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .header h1 {
+            margin-top: 14px;
+            font-size: 27px;
+        }
+
+        .header p {
+            margin-top: 6px;
+            color: #777;
+            font-size: 14px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 22px;
+            padding: 22px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
+
+        .field {
+            margin-bottom: 18px;
+        }
+
+        .field label {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .input-wrap {
+            position: relative;
+        }
+
+        .rupee {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            height: 54px;
+            border: 1.5px solid #d9dce1;
+            border-radius: 12px;
+            padding: 0 15px 0 40px;
+            font-size: 18px;
+            font-weight: 600;
+            outline: none;
+            background: #fff;
+        }
+
+        input:focus {
+            border-color: #111;
+        }
+
+        .tenure-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tenure-wrap input {
+            padding-left: 15px;
+        }
+
+        .months {
+            min-width: 82px;
+            height: 54px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f1f2f4;
+            border-radius: 12px;
+            font-weight: 700;
+        }
+
+        .hypo {
+            height: 54px;
+            border-radius: 12px;
+            background: #f7f7f8;
+            border: 1.5px solid #e1e2e5;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+        }
+
+        .hypo span:first-child {
+            font-weight: 700;
+        }
+
+        .hypo span:last-child {
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .difference {
+            margin-top: -5px;
+            margin-bottom: 18px;
+            padding: 12px 14px;
+            border-radius: 10px;
+            background: #f5f6f7;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .difference strong {
+            color: #111;
+            font-size: 15px;
+        }
+
+        .calculate {
+            width: 100%;
+            height: 55px;
+            border: none;
+            border-radius: 13px;
+            background: #111;
+            color: white;
+            font-size: 17px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .calculate:active {
+            transform: scale(0.98);
+        }
+
+        .reset {
+            width: 100%;
+            margin-top: 10px;
+            height: 45px;
+            border: none;
+            background: transparent;
+            color: #555;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .result {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .emi-card {
+            background: #111;
+            color: white;
+            border-radius: 18px;
+            padding: 23px 18px;
+            text-align: center;
+        }
+
+        .emi-title {
+            font-size: 13px;
+            opacity: 0.75;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .emi {
+            margin-top: 7px;
+            font-size: 36px;
+            font-weight: 900;
+        }
+
+        .per-month {
+            font-size: 14px;
+            opacity: 0.75;
+        }
+
+        .cibil {
+            margin-top: 12px;
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+        }
+
+        .error {
+            display: none;
+            color: #c62828;
+            background: #ffebee;
+            padding: 10px 12px;
+            border-radius: 9px;
+            margin-bottom: 15px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 18px 0;
+            color: #999;
+            font-size: 11px;
+        }
+
+        @media (max-width: 380px) {
+            .app {
+                padding: 12px;
+            }
+
+            .card {
+                padding: 18px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .emi {
+                font-size: 32px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<header>
-  <div>
-    <h1>EMI Calculator</h1>
-    <p>Shashi Automobiles, Bettiah</p>
-  </div>
+<div class="app">
 
-  <div class="header-actions">
-    <button class="emi-top-btn" onclick="openEMI()">EMI Calculator</button>
-    <button class="menu-btn" onclick="openMenu()">☰</button>
-  </div>
-</header>
-
-<main class="container">
-
-<section class="card">
-  <h2>Bike Search</h2>
-  <p class="subtitle">Bike code डालकर variant और price देखें</p>
-
-  <div class="group">
-    <label for="bikeCode">BIKE CODE</label>
-    <input
-      id="bikeCode"
-      type="text"
-      maxlength="10"
-      placeholder="Example: JR71"
-      oninput="findBike()"
-    >
-  </div>
-
-  <div id="bikeFound">✓ Bike Found</div>
-
-  <div id="variantBox">
-    <div class="variant-label">Variant Name</div>
-    <div id="variantName" class="variant-name"></div>
-  </div>
-
-  <div id="priceSection">
-
-    <div class="main-price-box">
-      <div class="main-price-label">ON ROAD PRICE</div>
-      <div id="addedPrice" class="main-price">₹0</div>
-      <div class="dashes">---</div>
+    <div class="header">
+        <div class="logo">🏍️</div>
+        <h1>Bike EMI Calculator</h1>
+        <p>Calculate your approximate monthly EMI</p>
     </div>
 
-    <div class="price-row">
-      <span>On Road Price</span>
-      <span id="normalPrice">₹0</span>
+    <div class="card">
+
+        <div class="error" id="error"></div>
+
+        <!-- ON ROAD PRICE -->
+        <div class="field">
+            <label>ON ROAD PRICE</label>
+
+            <div class="input-wrap">
+                <span class="rupee">₹</span>
+                <input
+                    type="number"
+                    id="onRoadPrice"
+                    placeholder="Enter on road price"
+                    min="1"
+                    inputmode="numeric"
+                >
+            </div>
+        </div>
+
+        <!-- DP -->
+        <div class="field">
+            <label>DOWN PAYMENT (DP)</label>
+
+            <div class="input-wrap">
+                <span class="rupee">₹</span>
+                <input
+                    type="number"
+                    id="downPayment"
+                    placeholder="Enter down payment"
+                    min="0"
+                    inputmode="numeric"
+                >
+            </div>
+        </div>
+
+        <!-- PRICE - DP -->
+        <div class="difference" id="differenceBox">
+            <span>On Road Price − DP</span>
+            <strong id="difference">₹0</strong>
+        </div>
+
+        <!-- HYPO -->
+        <div class="field">
+            <label>HYPO</label>
+
+            <div class="hypo">
+                <span>Hypothecation Charges</span>
+                <span>₹500</span>
+            </div>
+        </div>
+
+        <!-- TENURE -->
+        <div class="field">
+            <label>TENURE</label>
+
+            <div class="tenure-wrap">
+                <input
+                    type="number"
+                    id="tenure"
+                    placeholder="Enter months"
+                    min="1"
+                    max="120"
+                    inputmode="numeric"
+                >
+
+                <div class="months">Months</div>
+            </div>
+        </div>
+
+        <button class="calculate" onclick="calculateEMI()">
+            CALCULATE EMI
+        </button>
+
+        <button class="reset" onclick="resetCalculator()">
+            Reset
+        </button>
+
+        <!-- RESULT -->
+        <div class="result" id="result">
+
+            <div class="emi-card">
+                <div class="emi-title">Approx EMI</div>
+
+                <div class="emi" id="emi">
+                    ₹0
+                </div>
+
+                <div class="per-month">
+                    per month
+                </div>
+            </div>
+
+            <div class="cibil">
+                Approx EMI according to your CIBIL
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="price-row">
-      <span>Ex-Showroom Price</span>
-      <span id="exPrice">₹0</span>
+    <div class="footer">
+        Bike EMI Calculator
     </div>
 
-    <button class="primary" onclick="openEMI()">
-      EMI Calculate →
-    </button>
+</div>
 
-  </div>
-</section>
-
-<section id="emiSection" class="card">
-
-  <h2>EMI Calculator Details</h2>
-  <p class="subtitle">अपनी EMI calculate करने के लिए details भरें</p>
-
-  <div class="group">
-    <label for="emiPrice">ON ROAD PRICE</label>
-    <input id="emiPrice" type="number" value="0" oninput="calculateEMI()">
-  </div>
-
-  <div class="group">
-    <label for="downPayment">DOWN PAYMENT</label>
-    <input id="downPayment" type="number" value="0" oninput="calculateEMI()">
-  </div>
-
-  <div class="group">
-    <label for="tenure">TENURE IN MONTHS</label>
-    <select id="tenure" onchange="calculateEMI()">
-      <option value="12">12 Months</option>
-      <option value="18">18 Months</option>
-      <option value="24" selected>24 Months</option>
-      <option value="30">30 Months</option>
-      <option value="36">36 Months</option>
-      <option value="48">48 Months</option>
-      <option value="60">60 Months</option>
-    </select>
-  </div>
-
-  <div class="calculation">
-    <div class="calc-row">
-      <span>On Road Price − DP</span>
-      <span id="remaining">₹0</span>
-    </div>
-
-    <div class="calc-row">
-      <span>Hypothecation</span>
-      <span>₹500</span>
-    </div>
-
-    <div class="calc-row">
-      <span>Processing Fee</span>
-      <span id="feeText">₹6,000</span>
-    </div>
-
-    <div class="calc-row">
-      <span>Interest Rate</span>
-      <span id="rateText">8%</span>
-    </div>
-
-    <div class="calc-row" id="discountRow">
-      <span>Discount</span>
-      <span id="discountText">₹0</span>
-    </div>
-  </div>
-
-  <div class="result">
-    <p>Approx Monthly EMI</p>
-    <h3 id="emiResult">₹0</h3>
-    <p>Approx EMI according to your details</p>
-  </div>
-
-  <button class="primary" onclick="generatePDF()">Generate PDF</button>
-  <button class="secondary" onclick="resetCalculator()">Reset</button>
-
-</section>
-
-</main>
-
-<footer>
-  <strong>Shashi Automobiles, Bettiah</strong><br>
-  Ride Your Dreams With Us
-</footer>
-
-<div id="overlay" class="overlay" onclick="closeMenu()"></div>
-
-<aside id="drawer" class="drawer">
-
-  <div class="drawer-head">
-    <h2>Main Menu</h2>
-    <button class="close-btn" onclick="closeMenu()">×</button>
-  </div>
-
-  <div class="group">
-    <label for="processingFee">PROCESSING FEE</label>
-    <input id="processingFee" type="number" value="6000">
-  </div>
-
-  <div class="group">
-    <label for="interestRate">INTEREST RATE (% per 12 months)</label>
-    <input id="interestRate" type="number" value="8" step="0.1">
-  </div>
-
-  <div class="group">
-    <label for="discount">DISCOUNT</label>
-    <input id="discount" type="number" value="0">
-  </div>
-
-  <button class="primary" onclick="saveSettings()">Save Settings</button>
-
-</aside>
 
 <script>
 
-/* COMPLETE BIKE LIST FROM BETTIAH PRICE LIST */
-
-const bikeRows = [
-["DY08","CT 110 X ES",8952.98,65029.80,6712.19,80694.97],
-["DY13","CT110 X ES NXT",9945.95,74959.50,6908.10,91813.55],
-["PF37","Platina 100 ES",8803.12,63531.20,6682.63,79016.95],
-["JK35","Platina 110 DRUM",9032.04,65820.40,6727.79,81580.23],
-["JK38","Platina 110 Drum ES NXT",9991.38,75413.80,6917.06,92322.24],
-["JK39","Platina 100 ES NXT",9491.65,70416.50,6818.47,86726.62],
-["JK36","Platina 110 DISC ABS",9902.29,74522.90,6899.49,91324.68],
-["DH50","PULSAR 125 Neon DISC SINGLE SEAT",10987.80,77998.00,6968.05,95953.85],
-["DH65","PULSAR 125 Neon DISC OBD2B",11329.26,80912.60,7025.55,99267.41],
-["DH71","Pulsar 125 CF Disc with LED HL and Blinkers",12530.79,91927.90,7242.88,111701.57],
-["DH73","Pulsar 125 Neon Disc with LED Head Lamp",12323.11,89851.10,7201.91,109376.12],
-["DH70","Pulsar 125 CF Disc Split Seat with LED HL and Blinkers",12736.70,93987.00,7283.51,114007.21],
-["DH56","Pulsar 125 Carbon Disc Split Seat UG",11853.92,86659.20,7138.93,105652.05],
-["DH58","Pulsar 125 CF Disc Split Seat OBD2B",12051.42,88134.20,7168.03,107353.65],
-["DH57","Pulsar 125 Carbon Disc Single Seat UG",11669.25,84812.50,7102.50,103584.25],
-["DH62","Pulsar 125 Carbon Disc OBD2B",11849.64,86116.40,7128.22,105094.26],
-["JR70","Pulsar 125 Standard Single Seat LCD",12714.37,92883.70,7261.74,112859.81],
-["JR71","Pulsar 125 Standard Split Seat TFT",13420.60,99946.00,7401.07,120767.67],
-["JR72","Pulsar 125 Standard Single Seat TFT",13320.89,98948.90,7381.40,119651.19],
-["JR73","Pulsar 125 Premium Split Seat TFT",14863.33,103975.70,7480.58,126319.61],
-["DH60","PULSAR 150 SD UG",15199.46,107940.50,7558.80,130698.76],
-["DH59","PULSAR 150 SD UG - OBD2B",15231.91,108235.50,7564.62,131032.03],
-["DH61","PULSAR 150 TD UG",15611.57,111687.00,7632.72,134931.29],
-["DH63","PULSAR 150 TD UG - OBD2B",15644.02,111982.00,7638.54,135264.56],
-["DH68","PULSAR 150 SD UG",15984.15,114165.00,7681.61,137830.76],
-["DH69","PULSAR 150 TD UG",16416.38,118094.40,7759.14,142269.92],
-["DH72","PULSAR 150 SD",15652.51,111150.10,7622.13,134424.74],
-["JR67","Pulsar 150 SD Standard Single Seat LCD",16121.74,115415.80,7706.29,139243.83],
-["JR68","Pulsar 150 TD Standard Single Seat TFT",16886.26,122366.00,7843.41,147095.67],
-["JR91","Pulsar 150 TD Standard Split Seat TFT",16996.59,123369.00,7863.20,148228.79],
-["JR90","Pulsar 150 TD Premium Split Seat TFT",17597.56,128832.40,7970.99,154400.96],
-["JR38","PULSAR N 150 SD Phase 2",15720.60,112678.20,7652.28,136051.08],
-["JR31","PULSAR N 150 TD",16075.61,115905.50,7715.95,139697.05],
-["JF46","Pulsar NS 125 BASE (OBD2B)",12732.96,94069.60,7285.14,114087.70],
-["JF58","Pulsar NS 125 UG (OBD2B)",14607.62,101651.10,7434.72,123693.44],
-["JF60","Pulsar NS 125 UG ABS (OBD2B)",13325.91,99999.10,7402.12,120727.13],
-["JF57","Pulsar NS 125 UG ABS",14419.36,100848.70,7418.88,122686.94],
-["JF50","Pulsar NS 125 UG",12544.16,92181.60,7247.89,111973.65],
-["JF51","Pulsar NS 125 UG",12950.08,96240.80,7327.97,116518.85],
-["JF44","Pulsar NS 125 UG",13202.01,98760.10,7377.68,119339.79],
-["JF41","Pulsar NS 160 TWIN Channel ABS & USD FORK",16687.61,121469.20,11972.24,150129.05],
-["JF55","Pulsar NS 160 TWIN Channel OBD2B",17435.96,127363.30,12088.53,156887.79],
-["JF45","Pulsar NS 160 UG - OBD2B",18371.17,135865.20,12256.27,166492.64],
-["JF43","Pulsar NS 160 UG",17581.29,129593.50,12132.53,159307.31],
-["JR37","Pulsar N 160",16268.36,117657.80,11897.04,145823.20],
-["JR45","Pulsar N 160 (OBD2B)",16268.36,117657.80,11897.04,145823.20],
-["JR82","Pulsar N160 Single Seat TD SC USD fork",16998.54,123386.70,12010.07,152395.31],
-["JR83","Pulsar N160 Split Seat TD DC USD fork",18018.12,132655.60,12192.94,162866.66],
-["JR75","Pulsar N160 4V TD SC Single Seat USD Fork,LCD",17936.34,131912.20,12178.27,162026.82],
-["JR54","Pulsar N160 4V TD TC Split Seat USD Fork TFT",18921.52,140868.40,12354.98,172144.90],
-["JL22","PULSAR NS 200 (TWIN CHANNEL ABS & USD FORK)",18106.33,134366.60,12226.70,164699.63],
-["JL30","PULSAR NS 200 (TWIN CHANNEL OBD2B)",18870.90,140408.20,12345.90,171625.00],
-["JL24","PULSAR NS 200 UG",18969.50,142213.60,12381.52,173564.61],
-["JL25","PULSAR NS 200 UG - OBD2B",20004.06,150709.60,12549.14,183262.80],
-["DT19","PULSAR RS 200",20364.35,162857.70,12788.82,196010.86],
-["DT22","PULSAR RS 200 UG",22502.80,182298.20,13172.37,217973.37],
-["JR20","Pulsar N 250 UG",18137.48,134649.80,12232.29,165019.56],
-["JR34","Pulsar N 250 UG - OBD2B",19555.60,146632.70,12468.70,178657.00],
-["JR21","Pulsar N 160 UG",17315.20,127174.50,12084.80,156574.50],
-["JR33","Pulsar N 160 UG (OBD2B)",17557.92,129381.10,12128.34,159067.36],
-["PD36","AVENGER 160 Street",15799.78,113398.00,11813.00,141010.78],
-["PD39","AVENGER 160 Street (OBD2B)",15832.23,113693.00,11818.82,141344.05],
-["PD35","AVENGER 220 Cruise ABS",18550.24,138402.20,12306.32,169258.76],
-["PD38","AVENGER 220 Cruise ABS (OBD2B)",18325.09,135446.30,12248.00,166019.39],
-["PD40","AVENGER 220 Street ABS",18325.09,135446.30,12248.00,166019.39],
-["JF36","Dominar D 250",22237.86,171926.00,12967.73,207131.59],
-["JF53","Dominar D250 UG",23977.88,186835.30,13261.89,224075.07],
-["JF62","DOMINAR D 400 (350cc)",26335.70,208270.00,13684.78,248290.48],
-["JF52","Dominar D400",29751.63,240233.00,23462.76,293447.39],
-["JL32","Pulsar NS 400z (350cc)",23887.67,186015.20,13245.71,223148.58],
-["JL28","Pulsar NS 400Z UG",24655.00,193900.00,22548.63,241103.63],
-["DK12","Pulsar 220 F UG",17479.39,128667.20,12114.25,158260.84],
-["DK13","Pulsar 220 F UG - OBD2B",17513.79,128979.90,12120.42,158614.11],
-["DK14","Pulsar 220 F UG with LED Blinker",18326.39,135458.10,12248.23,166032.73],
-["DK15","Pulsar 220 F LED Head Lamp",18914.39,140803.50,12353.70,172071.58],
-["JR32","PULSAR F 250 UG",18906.54,141641.30,12370.23,172918.07],
-["DH64","PULSAR 150 SD (NEW S&G, USB)",14880.15,105037.70,7501.53,127419.38],
-["DH66","PULSAR 150 SD (NEW S&G, USB) OBD2B",14912.60,105332.70,7507.35,127752.65],
-["JH27","Freedom 125 NG04 Disc LED",14441.66,102306.00,7447.64,124195.30],
-["JH30","Freedom 125 NG04 Drum LED",12036.23,88482.30,7174.90,107693.43],
-["JH31","Freedom 125 Drum OBD2A",12400.46,91624.64,7236.90,111262.00],
-["JH36","Freedom 125 Disc LED",16262.84,117498.50,7747.38,141508.71],
-["JH37","Freedom 125 Drum LED",14690.90,104117.30,7483.37,126291.58],
-["JH38","Freedom 125 Drum",15125.53,107159.34,7543.39,129828.26],
-["JZ51","Pulsar N125 Top",12467.37,92293.70,7250.10,112011.17],
-["JZ56","Pulsar N125 Top (OBD2B)",12513.39,92753.90,7259.18,112526.47],
-["JZ53","Pulsar N125 Mid",11848.02,86600.20,7137.77,105585.99],
-["JR50","Pulsar N 160 TD",15871.82,114052.90,11825.92,141750.64],
-["JR53","Pulsar N 160 TD",16309.95,117126.80,11886.56,145323.31],
-["JR52","Pulsar N 160 TD DC OBD2B",16627.31,120011.90,11943.49,148582.70],
-["JF61","Pulsar NS 125 UG ABS with Ride Modes",15091.13,106046.60,7521.44,128659.16],
-["JR63","Pulsar N160 TD TC with USD Fork",16557.16,120283.30,11948.84,148789.30],
-["DJ16","Pulsar 180",16962.14,123964.90,12021.48,152948.52]
-];
-
-const bikes = {};
-
-bikeRows.forEach(row => {
-  bikes[row[0]] = {
-    name:row[1],
-    ex:row[2],
-    rto:row[3],
-    insurance:row[4],
-    price:row[5]
-  };
-});
-
-let selectedBike = null;
-
-let settings = {
-  processingFee:6000,
-  interestRate:8,
-  discount:0
-};
-
-function money(value){
-  return "₹" + Number(value || 0).toLocaleString("en-IN",{
-    maximumFractionDigits:0
-  });
-}
-
-function openMenu(){
-  document.getElementById("drawer").classList.add("open");
-  document.getElementById("overlay").classList.add("show");
-}
-
-function closeMenu(){
-  document.getElementById("drawer").classList.remove("open");
-  document.getElementById("overlay").classList.remove("show");
-}
-
-function loadSettings(){
-  const saved = localStorage.getItem("bikeEMISettings");
-
-  if(saved){
-    settings = JSON.parse(saved);
-  }
-
-  document.getElementById("processingFee").value =
-    settings.processingFee;
-
-  document.getElementById("interestRate").value =
-    settings.interestRate;
+    /*
+        ================================
+        HIDDEN FINANCE SETTINGS
+        ================================
 
-  document.getElementById("discount").value =
-    settings.discount;
-
-  updateSettingText();
-}
+        Processing Fee = ₹6,000
+        Interest = 8% per 12 months
+        Hypo = ₹500
+    */
 
-function updateSettingText(){
-  document.getElementById("feeText").textContent =
-    money(settings.processingFee);
+    const PROCESSING_FEE = 6000;
+    const INTEREST_RATE = 0.08;
+    const HYPO = 500;
 
-  document.getElementById("rateText").textContent =
-    settings.interestRate + "%";
 
-  document.getElementById("discountText").textContent =
-    money(settings.discount);
-}
+    // Format amount in Indian currency
+    function formatRupee(amount) {
 
-function saveSettings(){
-  settings.processingFee =
-    Number(document.getElementById("processingFee").value) || 0;
+        return "₹" + Math.round(amount).toLocaleString("en-IN");
 
-  settings.interestRate =
-    Number(document.getElementById("interestRate").value) || 0;
+    }
 
-  settings.discount =
-    Number(document.getElementById("discount").value) || 0;
 
-  localStorage.setItem(
-    "bikeEMISettings",
-    JSON.stringify(settings)
-  );
+    // Update ON ROAD PRICE - DP live
+    function updateDifference() {
 
-  updateSettingText();
+        const price =
+            Number(document.getElementById("onRoadPrice").value) || 0;
 
-  if(selectedBike){
-    setEMIPrice();
-  }
+        const dp =
+            Number(document.getElementById("downPayment").value) || 0;
 
-  calculateEMI();
-  closeMenu();
+        const difference = price - dp;
 
-  alert("Settings saved successfully");
-}
+        document.getElementById("difference").textContent =
+            formatRupee(Math.max(difference, 0));
 
-function findBike(){
-  const code = document
-    .getElementById("bikeCode")
-    .value
-    .trim()
-    .toUpperCase();
+    }
 
-  const found = document.getElementById("bikeFound");
-  const variant = document.getElementById("variantBox");
-  const priceSection = document.getElementById("priceSection");
 
-  if(!code){
-    found.style.display = "none";
-    variant.style.display = "none";
-    priceSection.style.display = "none";
-    selectedBike = null;
-    return;
-  }
+    // Calculate EMI
+    function calculateEMI() {
 
-  const bike = bikes[code];
+        const price =
+            Number(document.getElementById("onRoadPrice").value);
 
-  if(!bike){
-    found.style.display = "none";
-    variant.style.display = "none";
-    priceSection.style.display = "none";
-    selectedBike = null;
-    return;
-  }
+        const dp =
+            Number(document.getElementById("downPayment").value);
 
-  selectedBike = bike;
+        const tenure =
+            Number(document.getElementById("tenure").value);
 
-  found.style.display = "block";
-  variant.style.display = "block";
-  priceSection.style.display = "block";
+        const errorBox =
+            document.getElementById("error");
 
-  document.getElementById("variantName").textContent =
-    bike.name;
+        errorBox.style.display = "none";
 
-  document.getElementById("addedPrice").textContent =
-    money(bike.price + 3000);
 
-  document.getElementById("normalPrice").textContent =
-    money(bike.price);
+        // Validation
+        if (!price || price <= 0) {
 
-  document.getElementById("exPrice").textContent =
-    money(bike.ex);
+            showError("Please enter On Road Price.");
+            return;
 
-  setEMIPrice();
-}
+        }
 
-function setEMIPrice(){
-  if(!selectedBike) return;
 
-  const addedPrice = selectedBike.price + 3000;
+        if (dp < 0 || dp >= price) {
 
-  const finalPrice = Math.max(
-    0,
-    addedPrice - settings.discount
-  );
+            showError("DP must be less than On Road Price.");
+            return;
 
-  document.getElementById("emiPrice").value =
-    Math.round(finalPrice);
+        }
 
-  calculateEMI();
-}
 
-function openEMI(){
-  document.getElementById("emiSection").style.display = "block";
+        if (!tenure || tenure <= 0) {
 
-  document.getElementById("emiSection").scrollIntoView({
-    behavior:"smooth",
-    block:"start"
-  });
+            showError("Please enter Tenure in months.");
+            return;
 
-  calculateEMI();
-}
+        }
 
-function calculateEMI(){
-  const price =
-    Number(document.getElementById("emiPrice").value) || 0;
-
-  const downPayment =
-    Number(document.getElementById("downPayment").value) || 0;
-
-  const tenure =
-    Number(document.getElementById("tenure").value) || 1;
-
-  const remaining =
-    Math.max(0,price - downPayment);
-
-  const financeAmount =
-    remaining + 500 + settings.processingFee;
-
-  const interest =
-    financeAmount *
-    (settings.interestRate / 100) *
-    (tenure / 12);
-
-  const total =
-    financeAmount + interest;
-
-  const emi =
-    total / tenure;
-
-  document.getElementById("remaining").textContent =
-    money(remaining);
-
-  document.getElementById("emiResult").textContent =
-    money(Math.round(emi));
-}
-
-function resetCalculator(){
-  document.getElementById("bikeCode").value = "";
-  document.getElementById("emiPrice").value = 0;
-  document.getElementById("downPayment").value = 0;
-  document.getElementById("tenure").value = 24;
-
-  document.getElementById("bikeFound").style.display = "none";
-  document.getElementById("variantBox").style.display = "none";
-  document.getElementById("priceSection").style.display = "none";
-  document.getElementById("emiSection").style.display = "none";
-
-  selectedBike = null;
-
-  calculateEMI();
-}
-
-function generatePDF(){
-  const bikeName =
-    selectedBike ? selectedBike.name : "Bike";
-
-  const price =
-    Number(document.getElementById("emiPrice").value) || 0;
-
-  const downPayment =
-    Number(document.getElementById("downPayment").value) || 0;
-
-  const tenure =
-    document.getElementById("tenure").value;
-
-  const emi =
-    document.getElementById("emiResult").textContent;
-
-  const discount = settings.discount;
-
-  const originalPrice =
-    selectedBike ? selectedBike.price + 3000 : price;
-
-  const finalPrice =
-    Math.max(0,originalPrice - discount);
-
-  let discountRows = "";
-
-  if(discount > 0){
-    discountRows = `
-      <tr>
-        <td>Discount</td>
-        <td>${money(discount)}</td>
-      </tr>
-      <tr>
-        <td>Final On Road Price</td>
-        <td>${money(finalPrice)}</td>
-      </tr>
-    `;
-  }
-
-  const html = `
-  <!DOCTYPE html>
-  <html>
-  <head>
-    <title>Bike EMI Quotation</title>
-    <style>
-      body{
-        font-family:Arial;
-        padding:30px;
-        color:#111827;
-      }
-      h1{text-align:center}
-      h3{text-align:center;color:#555}
-      table{
-        width:100%;
-        border-collapse:collapse;
-        margin-top:25px;
-      }
-      td{
-        border:1px solid #ccc;
-        padding:12px;
-      }
-      td:first-child{
-        font-weight:bold;
-        width:45%;
-      }
-      .emi{
-        margin-top:25px;
-        text-align:center;
-        font-size:25px;
-        font-weight:bold;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Shashi Automobiles, Bettiah</h1>
-    <h3>Bike EMI Quotation</h3>
-
-    <table>
-      <tr>
-        <td>Bike / Variant</td>
-        <td>${bikeName}</td>
-      </tr>
-
-      <tr>
-        <td>Ex-Showroom Price</td>
-        <td>${selectedBike ? money(selectedBike.ex) : "N/A"}</td>
-      </tr>
-
-      <tr>
-        <td>RTO</td>
-        <td>${selectedBike ? money(selectedBike.rto) : "N/A"}</td>
-      </tr>
-
-      <tr>
-        <td>Insurance</td>
-        <td>${selectedBike ? money(selectedBike.insurance) : "N/A"}</td>
-      </tr>
-
-      <tr>
-        <td>On Road Price</td>
-        <td>${money(originalPrice)}</td>
-      </tr>
-
-      ${discountRows}
-
-      <tr>
-        <td>Down Payment</td>
-        <td>${money(downPayment)}</td>
-      </tr>
-
-      <tr>
-        <td>Hypothecation</td>
-        <td>₹500</td>
-      </tr>
-
-      <tr>
-        <td>Tenure</td>
-        <td>${tenure} Months</td>
-      </tr>
-    </table>
-
-    <div class="emi">
-      Approx Monthly EMI: ${emi}
-    </div>
-  </body>
-  </html>
-  `;
-
-  const printWindow = window.open("","_blank");
-
-  printWindow.document.write(html);
-  printWindow.document.close();
-  printWindow.print();
-}
-
-loadSettings();
-calculateEMI();
+
+        if (tenure > 120) {
+
+            showError("Tenure cannot be more than 120 months.");
+            return;
+
+        }
+
+
+        /*
+            FINANCE AMOUNT
+
+            On Road Price
+            - Down Payment
+            + Hypo ₹500
+            + Processing Fee ₹6,000
+        */
+
+        const financeAmount =
+            price - dp + HYPO + PROCESSING_FEE;
+
+
+        /*
+            INTEREST
+
+            8% for every 12 months
+
+            Example:
+            12 months = 8%
+            24 months = 16%
+            30 months = 20%
+        */
+
+        const interest =
+            financeAmount *
+            INTEREST_RATE *
+            (tenure / 12);
+
+
+        // Total repayment
+        const totalRepayment =
+            financeAmount + interest;
+
+
+        // Monthly EMI
+        const emi =
+            totalRepayment / tenure;
+
+
+        // Display EMI
+        document.getElementById("emi").textContent =
+            formatRupee(emi);
+
+
+        document.getElementById("result").style.display =
+            "block";
+
+
+        // Update difference
+        updateDifference();
+
+    }
+
+
+    // Show error
+    function showError(message) {
+
+        const errorBox =
+            document.getElementById("error");
+
+        errorBox.textContent = message;
+        errorBox.style.display = "block";
+
+    }
+
+
+    // Reset
+    function resetCalculator() {
+
+        document.getElementById("onRoadPrice").value = "";
+        document.getElementById("downPayment").value = "";
+        document.getElementById("tenure").value = "";
+
+        document.getElementById("difference").textContent =
+            "₹0";
+
+        document.getElementById("emi").textContent =
+            "₹0";
+
+        document.getElementById("result").style.display =
+            "none";
+
+        document.getElementById("error").style.display =
+            "none";
+
+    }
+
+
+    // Live update when price or DP changes
+    document.getElementById("onRoadPrice")
+        .addEventListener("input", updateDifference);
+
+    document.getElementById("downPayment")
+        .addEventListener("input", updateDifference);
+
+
+    // Register offline service worker
+    if ("serviceWorker" in navigator) {
+
+        window.addEventListener("load", function () {
+
+            navigator.serviceWorker.register("service-worker.js")
+                .catch(function (error) {
+
+                    console.log(
+                        "Service Worker registration failed:",
+                        error
+                    );
+
+                });
+
+        });
+
+    }
 
 </script>
 
